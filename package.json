@@ -1,0 +1,28 @@
+{
+  "name": "handy-dandy-core",
+  "version": "1.0.0",
+  "description": "Handy Dandy Core - Node.js project with TypeScript",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MemelyPepeartly/Handy-Dandy-Core.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MemelyPepeartly/Handy-Dandy-Core/issues"
+  },
+  "homepage": "https://github.com/MemelyPepeartly/Handy-Dandy-Core#readme",
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.2"
+  }
+}
