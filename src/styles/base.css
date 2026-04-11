@@ -1,0 +1,79 @@
+.window-header .handy-dandy-item-remix-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.window-header .handy-dandy-npc-remix-sections-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.window-header .handy-dandy-npc-rule-elements-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.window-header .handy-dandy-item-remix-button.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.handy-dandy-item-tools-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.handy-dandy-item-tools-dialog .tool-option {
+  padding: 6px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  border-radius: 4px;
+}
+
+.handy-dandy-item-tools-dialog .tool-option p {
+  margin: 4px 0 0;
+}
+
+.handy-dandy-item-image-stack {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.handy-dandy-item-image-generate,
+.handy-dandy-item-image-preview {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+  line-height: 1.1;
+  cursor: pointer;
+}
+
+.handy-dandy-npc-rule-elements-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.handy-dandy-npc-rule-elements-form .notes {
+  margin: 0;
+}
+
+.handy-dandy-npc-rule-elements-form textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 260px;
+  font-family: var(--font-monospace, monospace);
+  font-size: 12px;
+}
+
+.handy-dandy-npc-rule-elements-form select {
+  width: 100%;
+}
