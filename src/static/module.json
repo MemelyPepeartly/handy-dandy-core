@@ -25,6 +25,28 @@
   "packs": [],
   "relationships": {
     "systems": [],
-    "requires": []
+    "requires": [],
+    "recommends": [
+      {
+        "id": "handy-dandy-conjur",
+        "type": "module",
+        "manifest": "https://github.com/MemelyPepeartly/handy-dandy-conjur/releases/download/latest/module.json",
+        "compatibility": {
+          "minimum": "1.17.8",
+          "verified": "1.17.8"
+        },
+        "reason": "Adds OpenRouter-powered PF2E generation, remix, and image tools to the Handy Dandy core runtime."
+      },
+      {
+        "id": "handy-dandy-tools",
+        "type": "module",
+        "manifest": "https://github.com/MemelyPepeartly/handy-dandy-tools/releases/download/latest/module.json",
+        "compatibility": {
+          "minimum": "1.17.8",
+          "verified": "1.17.8"
+        },
+        "reason": "Adds non-AI utility modules like Rune Stripper, Map Notes, and token image preview to Handy Dandy Core."
+      }
+    ]
   }
 }

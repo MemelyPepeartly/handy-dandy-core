@@ -31,16 +31,7 @@ declare global {
   }
 }
 
-Hooks.once("init", async () => {
-  console.log(`${CONSTANTS.MODULE_NAME} | init`);
-  registerSettings();
-
-  await loadTemplates({
-    "tool-overview": `${CONSTANTS.TEMPLATE_PATH}/tool-overview.hbs`,
-  });
-});
-
-Hooks.once("setup", () => {
+function initializeNamespace(): void {
   const existing = game.handyDandy;
   game.handyDandy = {
     openRouterSdk: existing?.openRouterSdk ?? null,
@@ -58,6 +49,20 @@ Hooks.once("setup", () => {
       invokeTool: invokeHandyTool,
     },
   };
+}
+
+Hooks.once("init", async () => {
+  console.log(`${CONSTANTS.MODULE_NAME} | init`);
+  initializeNamespace();
+  registerSettings();
+
+  await loadTemplates({
+    "tool-overview": `${CONSTANTS.TEMPLATE_PATH}/tool-overview.hbs`,
+  });
+});
+
+Hooks.once("setup", () => {
+  initializeNamespace();
 });
 
 Hooks.once("ready", () => {
