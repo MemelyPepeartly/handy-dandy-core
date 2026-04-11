@@ -1,28 +1,26 @@
 {
   "name": "handy-dandy-core",
-  "version": "1.0.0",
-  "description": "Handy Dandy Core - Node.js project with TypeScript",
-  "main": "dist/index.js",
+  "version": "1.17.6",
+  "type": "module",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "ts-node src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production",
+    "deploy:local": "webpack --mode production && xcopy /s /e /y /i dist \"%LOCALAPPDATA%\\FoundryVTT\\Data\\modules\\%npm_package_name%\\\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MemelyPepeartly/Handy-Dandy-Core.git"
+  "overrides": {
+    "@types/earcut": "3.0.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MemelyPepeartly/Handy-Dandy-Core/issues"
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "openai": "^5.0.1"
   },
-  "homepage": "https://github.com/MemelyPepeartly/Handy-Dandy-Core#readme",
   "devDependencies": {
-    "@types/node": "^25.6.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^6.0.2"
+    "copy-webpack-plugin": "^13.0.0",
+    "fork-ts-checker-webpack-plugin": "^9.0.0",
+    "fvtt-types": "npm:@league-of-foundry-developers/foundry-vtt-types@^12.331.5",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.4.0",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1"
   }
 }
