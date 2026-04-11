@@ -3,6 +3,7 @@ import {
   registerControlGroup,
   registerHandyTool,
   invokeHandyTool,
+  redrawSceneControls,
   type ControlCollection,
 } from "./core/registry";
 import { registerSettings } from "./setup/settings";
@@ -64,6 +65,7 @@ Hooks.once("ready", () => {
     return;
   }
 
+  redrawSceneControls();
   ui.notifications?.info(
     "Handy Dandy tools live under the Scene Controls toolbar. Open the Tool Guide from Module Settings for quick access.",
   );

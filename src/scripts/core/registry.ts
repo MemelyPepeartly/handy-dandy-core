@@ -27,8 +27,16 @@ export interface HandyDandyToolRegistration {
 const handyTools = new Map<string, HandyDandyToolRegistration>();
 const controlGroups = new Map<string, ControlWithToolCollection>();
 
+function refreshSceneControls(): void {
+  const controls = ui.controls as { render?: (options?: { reset?: boolean }) => unknown } | undefined;
+  controls?.render?.({ reset: true });
+}
+
 export function registerHandyTool(tool: HandyDandyToolRegistration): void {
   handyTools.set(tool.id, tool);
+  if (game.ready) {
+    refreshSceneControls();
+  }
 }
 
 export function getRegisteredHandyTools(): HandyDandyToolRegistration[] {
@@ -52,8 +60,15 @@ export async function invokeHandyTool(toolId: string): Promise<void> {
 
 export function registerControlGroup(control: ControlWithToolCollection): void {
   controlGroups.set(control.name, control);
+  if (game.ready) {
+    refreshSceneControls();
+  }
 }
 
 export function getRegisteredControlGroups(): ControlWithToolCollection[] {
   return [...controlGroups.values()];
+}
+
+export function redrawSceneControls(): void {
+  refreshSceneControls();
 }
