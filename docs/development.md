@@ -20,4 +20,4 @@ Handy Dandy Core is the shared runtime repo. Changes here should stay generic an
 
 - Do not move OpenRouter clients, PF2E generators, or utility feature logic into Core.
 - Prefer registration APIs and common Foundry plumbing over feature ownership.
-- Keep Foundry V13 compatibility and avoid duplicate control insertion on repeated hooks.
+- Keep Foundry V14 compatibility and avoid duplicate control insertion on repeated hooks.

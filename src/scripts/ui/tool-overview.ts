@@ -1,6 +1,8 @@
 ﻿import { CONSTANTS } from "../constants";
 import { getRegisteredHandyTools, invokeHandyTool } from "../core/registry";
 
+import appv1 = foundry.appv1;
+
 interface ToolCardData {
   id: string;
   title: string;
@@ -16,12 +18,12 @@ interface ToolOverviewData {
   tools: ToolCardData[];
 }
 
-export class ToolOverview extends FormApplication {
-  constructor(options?: Partial<FormApplicationOptions>) {
+export class ToolOverview extends appv1.api.FormApplication {
+  constructor(options?: Partial<appv1.api.FormApplication.Options>) {
     super(undefined, options);
   }
 
-  static override get defaultOptions(): FormApplicationOptions {
+  static override get defaultOptions(): appv1.api.FormApplication.Options {
     return foundry.utils.mergeObject(super.defaultOptions, {
       id: "handy-dandy-tool-overview",
       title: "Handy Dandy Tool Guide",

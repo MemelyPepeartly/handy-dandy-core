@@ -32,8 +32,9 @@ declare global {
 }
 
 function initializeNamespace(): void {
-  const existing = game.handyDandy;
-  game.handyDandy = {
+  const currentGame = game as InitGame & Game;
+  const existing = currentGame.handyDandy;
+  currentGame.handyDandy = {
     openRouterSdk: existing?.openRouterSdk ?? null,
     openRouterClient: existing?.openRouterClient ?? null,
     refreshAIClient: existing?.refreshAIClient ?? (() => undefined),
@@ -66,7 +67,8 @@ Hooks.once("setup", () => {
 });
 
 Hooks.once("ready", () => {
-  if (!game.user?.isGM) {
+  const currentGame = game as ReadyGame;
+  if (!currentGame.user?.isGM) {
     return;
   }
 
@@ -76,17 +78,24 @@ Hooks.once("ready", () => {
   );
 });
 
-Hooks.on("getSceneControlButtons", (controls: ControlCollection) => {
-  if (!game.user?.isGM) {
+const registerSceneControlButtonsHook = Hooks.on as (
+  hook: string,
+  fn: (controls: SceneControls.Control[] | Record<string, SceneControls.Control>) => void,
+) => number;
+
+registerSceneControlButtonsHook("getSceneControlButtons", (controls) => {
+  const currentGame = game as ReadyGame;
+  if (!currentGame.user?.isGM) {
     return;
   }
 
-  const alreadyPresent = Array.isArray(controls)
-    ? controls.some((control) => control.name === "handy-dandy")
-    : Object.prototype.hasOwnProperty.call(controls, "handy-dandy");
+  const controlCollection = controls as ControlCollection;
+  const alreadyPresent = Array.isArray(controlCollection)
+    ? controlCollection.some((control) => control.name === "handy-dandy")
+    : Object.prototype.hasOwnProperty.call(controlCollection, "handy-dandy");
   if (alreadyPresent) {
     return;
   }
 
-  insertSidebarButtons(controls);
+  insertSidebarButtons(controlCollection);
 });

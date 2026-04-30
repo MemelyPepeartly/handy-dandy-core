@@ -12,13 +12,26 @@
 type HybridToolArray = LegacyTool[] & Record<string, LegacyTool>;
 type HybridControlArray = SceneControls.Control[] & Record<string, ControlWithToolCollection>;
 
+function getCurrentGame(): ReadyGame {
+  return game as ReadyGame;
+}
+
+function getControlOrder(collection: ControlCollection): number {
+  return Array.isArray(collection) ? collection.length : Object.keys(collection).length;
+}
+
+function getToolOrder(collection: ToolCollection): number {
+  return Array.isArray(collection) ? collection.length : Object.keys(collection).length;
+}
+
 function useObjectToolCollections(): boolean {
-  const releaseGeneration = Number(game.release?.generation ?? 0);
+  const currentGame = getCurrentGame();
+  const releaseGeneration = Number(currentGame.release?.generation ?? 0);
   if (Number.isFinite(releaseGeneration) && releaseGeneration !== 0) {
     return releaseGeneration >= 13;
   }
 
-  const versionMajor = Number(game.version?.split(".")[0] ?? 0);
+  const versionMajor = Number(currentGame.version?.split(".")[0] ?? 0);
   if (Number.isFinite(versionMajor) && versionMajor !== 0) {
     return versionMajor >= 13;
   }
@@ -56,7 +69,8 @@ function resolveToggleActive(args: unknown[], fallback = false, toolName?: strin
   }
 
   if (toolName) {
-    const tools = ui.controls?.control?.tools;
+    const controlsState = ui.controls as { control?: { tools?: ToolCollection } } | null | undefined;
+    const tools = controlsState?.control?.tools;
     if (Array.isArray(tools)) {
       const match = tools.find((candidate) => candidate?.name === toolName);
       if (typeof match?.active === "boolean") {
@@ -75,7 +89,7 @@ function resolveToggleActive(args: unknown[], fallback = false, toolName?: strin
 }
 
 function requireNamespace(): NonNullable<Game["handyDandy"]> {
-  const namespace = game.handyDandy;
+  const namespace = (getCurrentGame() as ReadyGame & Game).handyDandy;
   if (!namespace) {
     ui.notifications?.error("Handy Dandy Core is not initialized.");
     throw new Error("Handy Dandy Core is not initialized.");
@@ -102,6 +116,7 @@ export function insertSidebarButtons(controls: ControlCollection): void {
   const handyGroupTools: ToolCollection = useObjectToolCollections() ? {} : [];
   const handyGroup: ControlWithToolCollection = {
     name: "handy-dandy",
+    order: getControlOrder(controls),
     title: "Handy Dandy Tools",
     icon: "fa-solid fa-screwdriver-wrench",
     layer: "interface",
@@ -118,6 +133,7 @@ export function insertSidebarButtons(controls: ControlCollection): void {
 
   compatibilityAddTool(handyGroup.tools, {
     name: "tool-guide",
+    order: getToolOrder(handyGroup.tools),
     title: "Tool Guide",
     icon: "fa-solid fa-compass",
     toggle: true,
@@ -140,6 +156,7 @@ export function insertSidebarButtons(controls: ControlCollection): void {
 
     compatibilityAddTool(handyGroup.tools, {
       name: tool.id,
+      order: getToolOrder(handyGroup.tools),
       title: tool.title,
       icon: tool.icon,
       button: true,

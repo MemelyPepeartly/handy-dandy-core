@@ -5,6 +5,7 @@
 export type ToolCollection = LegacyTool[] | Record<string, LegacyTool>;
 
 export type ControlWithToolCollection = Omit<SceneControls.Control, "tools"> & {
+  layer?: string;
   tools: ToolCollection;
   onChange?: (...args: unknown[]) => void;
   onToolChange?: (...args: unknown[]) => void;
