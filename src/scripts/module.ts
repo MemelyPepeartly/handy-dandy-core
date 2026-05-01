@@ -78,7 +78,8 @@ Hooks.once("ready", () => {
   );
 });
 
-const registerSceneControlButtonsHook = Hooks.on as (
+// Foundry V14 hook methods depend on their receiver for private hook state.
+const registerSceneControlButtonsHook = Hooks.on.bind(Hooks) as (
   hook: string,
   fn: (controls: SceneControls.Control[] | Record<string, SceneControls.Control>) => void,
 ) => number;
