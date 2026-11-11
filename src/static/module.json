@@ -53,8 +53,8 @@
         "type": "module",
         "manifest": "https://github.com/MemelyPepeartly/handy-dandy-tags/releases/download/latest/module.json",
         "compatibility": {
-          "minimum": "1.0.0",
-          "verified": "1.0.0"
+          "minimum": "1.17.11",
+          "verified": "1.17.11"
         },
         "reason": "Tags playlists, tracks, and scene notes and filters those sidebar lists."
       }
