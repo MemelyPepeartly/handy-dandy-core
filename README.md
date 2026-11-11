@@ -16,7 +16,7 @@ and the tool guide used by leaf modules.
 - `handy-dandy-core`: required base runtime.
 - `handy-dandy-conjur`: AI/OpenRouter/PF2E generation leaf module.
 - `handy-dandy-tools`: non-AI utility leaf module.
-- `handy-dandy-tags`: playlist, track, and scene-note tagging leaf module.
+- `handy-dandy-tags`: playlist, track, scene-note, and journal-entry tagging leaf module.
 
 `game.handyDandy.tags` is reserved for the tags leaf; Core does not own tag behavior.
 
