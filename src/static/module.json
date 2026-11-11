@@ -47,6 +47,16 @@
           "verified": "1.17.8"
         },
         "reason": "Adds non-AI utility modules like Rune Stripper, Map Notes, and token image preview to Handy Dandy Core."
+      },
+      {
+        "id": "handy-dandy-tags",
+        "type": "module",
+        "manifest": "https://github.com/MemelyPepeartly/handy-dandy-tags/releases/download/latest/module.json",
+        "compatibility": {
+          "minimum": "1.17.11",
+          "verified": "1.17.11"
+        },
+        "reason": "Tags playlists, tracks, and scene notes and filters those sidebar lists."
       }
     ]
   }
