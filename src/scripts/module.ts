@@ -22,6 +22,7 @@ declare global {
       };
       dev: Record<string, unknown>;
       flows: Record<string, unknown>;
+      tags: Record<string, unknown>;
       core: {
         registerTool: typeof registerHandyTool;
         registerControlGroup: typeof registerControlGroup;
@@ -44,6 +45,7 @@ function initializeNamespace(): void {
     },
     dev: existing?.dev ?? {},
     flows: existing?.flows ?? {},
+    tags: existing?.tags ?? {},
     core: {
       registerTool: registerHandyTool,
       registerControlGroup,

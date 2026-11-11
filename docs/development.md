@@ -16,6 +16,11 @@ Handy Dandy Core is the shared runtime repo. Changes here should stay generic an
 3. Update typings under `src/types` when the namespace contract changes.
 4. Update the README and any affected leaf-module call sites in the same change.
 
+## Namespace slots for leaf modules
+
+- `game.handyDandy.flows` is populated by utility and workflow leaf modules.
+- `game.handyDandy.tags` is reserved for `handy-dandy-tags`; Core preserves the slot in `initializeNamespace()` but does not implement tagging.
+
 ## Guardrails
 
 - Do not move OpenRouter clients, PF2E generators, or utility feature logic into Core.
